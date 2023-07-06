@@ -27,7 +27,7 @@ public interface ContactService {
     /**
      * Method to get contact with specific id from db.
      */
-    Contact findById(Integer id);
+    Contact findByIdAndUserID(Integer contactId, Integer userId);
 
     /**
      * Method to delete contact with specific id from db.

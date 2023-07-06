@@ -43,8 +43,9 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact findById(Integer id) {
-        return repository.findById(id).orElseThrow(() -> new NoSuchElementException("No Contact with this id"));
+    public Contact findByIdAndUserID(Integer contactId, Integer userId) {
+        return repository.findContactByIdAndUserId(contactId, userId)
+                .orElseThrow(() -> new NoSuchElementException("No Contact with this id"));
     }
 
     @Override

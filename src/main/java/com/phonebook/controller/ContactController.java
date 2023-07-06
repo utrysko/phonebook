@@ -48,6 +48,12 @@ public class ContactController extends BaseController{
         return ResponseEntity.ok(contactService.getAllByUserId(userId, pageable));
     }
 
+    @GetMapping
+    public ResponseEntity<Contact> contacts(@SessionAttribute Integer userId,
+                                            @RequestParam Integer contactId) {
+        return ResponseEntity.ok(contactService.findByIdAndUserID(contactId, userId));
+    }
+
     /**
      * A method to add new contact
      *
@@ -81,20 +87,22 @@ public class ContactController extends BaseController{
      */
     @PostMapping
     public ResponseEntity<Contact> editContact(@RequestBody @Valid Contact contact,
+                                               @RequestParam Integer contactId,
                                                @RequestParam("image") @Nullable MultipartFile multipartFile,
                                                @SessionAttribute Integer userId) throws IOException {
+        contact.setId(contactId);
         return addContact(contact, multipartFile, userId);
     }
 
     /**
      * A method to delete existing contact
      *
-     * @param contact that will be deleted
+     * @param contactId id contact that will be deleted
      * @return String with message that confirm deleted
      */
     @DeleteMapping
-    public ResponseEntity<String> deleteContact(@RequestBody Contact contact) {
-        contactService.deleteById(contact.getId());
+    public ResponseEntity<String> deleteContact(@RequestParam Integer contactId) {
+        contactService.deleteById(contactId);
         return ResponseEntity.ok("contact deleted");
     }
 }
