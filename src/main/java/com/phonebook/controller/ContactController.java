@@ -60,7 +60,7 @@ public class ContactController extends BaseController{
     public ResponseEntity<Contact> addContact(@RequestBody @Valid Contact contact,
                                               @RequestParam("image") @Nullable MultipartFile multipartFile,
                                               @SessionAttribute Integer userId) throws IOException {
-        if (multipartFile.getOriginalFilename() != null){
+        if (multipartFile != null && multipartFile.getOriginalFilename() != null){
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             contact.setPhoto(fileName);
             Contact savedContact = contactService.saveContact(contact, userId);
