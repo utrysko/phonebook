@@ -1,5 +1,6 @@
 package com.phonebook.controller;
 
+import com.phonebook.controller.ContactController;
 import com.phonebook.domain.Contact;
 import com.phonebook.dto.ContactDTO;
 import com.phonebook.service.ContactService;
@@ -12,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -31,13 +32,13 @@ class ContactControllerTest {
         controller = new ContactController(mockService);
         contact = Contact.builder()
                 .name("Andrew")
-                .emails(List.of("12345@gmail.com"))
-                .phones(List.of("+380735558866"))
+                .emails(Set.of("12345@gmail.com"))
+                .phones(Set.of("+380735558866"))
                 .build();
         contactDTO = ContactDTO.builder()
                 .name("Andrew")
-                .emails(List.of("12345@gmail.com"))
-                .phones(List.of("+380735558866"))
+                .emails(Set.of("12345@gmail.com"))
+                .phones(Set.of("+380735558866"))
                 .build();
     }
 
@@ -53,7 +54,7 @@ class ContactControllerTest {
 
     @Test
     void contacts() {
-        ResponseEntity<List<ContactDTO>> responseEntity = controller.contacts(1, Optional.empty(), Optional.empty());
+        ResponseEntity<List<ContactDTO>> responseEntity = controller.contacts(1, 0, 5);
         Pageable pageable = PageRequest.of(0, 5);
         assertTrue(responseEntity.getBody().contains(contactDTO));
         verify(mockService, times(1)).getAllByUserId(1, pageable);

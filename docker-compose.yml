@@ -1,0 +1,45 @@
+services:
+  postgresdb:
+    container_name: postgrescontainerforapp
+    image: postgres:15
+    restart: unless-stopped
+    command: --default-authentication-plugin=postgres_native_password
+    volumes:
+      - $HOME/database:/var/lib/postgres
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    environment:
+      POSTGRES_DATABASE: phonebook
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_ROOT_PASSWORD: admin
+      SERVICE_TAGS: prod
+      SERVICE_NAME: postgresdb
+    networks:
+      - apinetwork
+
+  apiapplication:
+    container_name: apiapplicationcontainer
+    build: .
+    image: apiapplication:v1
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresdb:5432/phonebook
+      SPRING_DATASOURCE_USERNAME: 'admin'
+      SPRING_DATASOURCE_PASSWORD: 'admin'
+      SERVICE_TAGS: prod
+      SERVICE_NAME: springapi
+    depends_on:
+      - postgresdb
+    networks:
+      - apinetwork
+
+networks:
+  apinetwork:
+    driver: bridge

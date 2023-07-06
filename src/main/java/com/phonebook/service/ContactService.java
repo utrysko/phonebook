@@ -33,4 +33,9 @@ public interface ContactService {
      * Method to delete contact with specific id from db.
      */
     void deleteById(Integer id);
+
+    /**
+     * Method to validate contact before adding.
+     */
+    Boolean validateContact(Contact contact, Integer userId);
 }

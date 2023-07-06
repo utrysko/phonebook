@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -25,6 +26,7 @@ public class ContactServiceImpl implements ContactService {
     private final ContactRepository repository;
     @Override
     public Contact saveContact(Contact contact, Integer userId) {
+        validateContact(contact, userId);
         contact.setUserId(userId);
         return repository.save(contact);
     }
@@ -51,5 +53,11 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void deleteById(Integer id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Boolean validateContact(Contact contact, Integer userId){
+        Optional<Contact> contactFromDB = repository.findContactByNameAndUserId(contact.getName(), userId);
+        return contactFromDB.isEmpty();
     }
 }

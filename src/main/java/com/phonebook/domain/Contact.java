@@ -1,10 +1,7 @@
 package com.phonebook.domain;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -12,7 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Contact class represents contact entity.
@@ -32,9 +29,9 @@ public class Contact{
     private Integer id;
     private String name;
     @ElementCollection
-    private List<@Email String> emails;
+    private Set<@Email String> emails;
     @ElementCollection
-    private List<@Pattern(regexp = "^\\+\\d{1,3}\\d{9}$") String> phones;
+    private Set<@Pattern(regexp = "^\\+\\d{1,3}\\d{9}$") String> phones;
     private Integer userId;
     @Nullable
     private String photo;

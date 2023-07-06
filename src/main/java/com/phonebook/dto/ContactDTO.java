@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * ContactDTO class. Fields are similar to Contact entity, but without userId and photo.
@@ -20,6 +20,6 @@ import java.util.List;
 public class ContactDTO {
     private Integer id;
     private String name;
-    private List<String> emails;
-    private List<String> phones;
+    private Set<String> emails;
+    private Set<String> phones;
 }

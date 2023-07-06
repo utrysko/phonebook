@@ -17,22 +17,22 @@ import java.io.IOException;
 @Slf4j
 public class BaseController {
 
-    @ExceptionHandler({IllegalArgumentException.class, HibernateException.class})
+    @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<String> handleExceptions(Exception e) {
         log.error(e.getMessage());
-        return ResponseEntity.internalServerError().build();
+        return ResponseEntity.ok(e.getMessage());
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException e) {
         log.error(e.getMessage());
-        return ResponseEntity.ok("enter correct value for email or phone fields");
+        return ResponseEntity.ok("Enter correct value for email or phone fields");
     }
 
-    @ExceptionHandler({Exception.class})
-    public ResponseEntity<String> handleMainException(Exception e) {
+    @ExceptionHandler({Exception.class, HibernateException.class})
+    public ResponseEntity<String> handleException(Exception e) {
         log.error(e.getMessage());
-        return ResponseEntity.internalServerError().build();
+        return ResponseEntity.ok("Failed to process request");
     }
 
     @ExceptionHandler({IOException.class})
