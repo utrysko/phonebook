@@ -48,9 +48,9 @@ public class ContactController extends BaseController{
         return ResponseEntity.ok(contactService.getAllByUserId(userId, pageable));
     }
 
-    @GetMapping
-    public ResponseEntity<Contact> contacts(@SessionAttribute Integer userId,
-                                            @RequestParam Integer contactId) {
+    @GetMapping("/{contactId}")
+    public ResponseEntity<Contact> contact(@SessionAttribute Integer userId,
+                                            @PathVariable Integer contactId) {
         return ResponseEntity.ok(contactService.findByIdAndUserID(contactId, userId));
     }
 
