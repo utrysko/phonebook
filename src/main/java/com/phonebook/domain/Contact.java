@@ -1,5 +1,6 @@
 package com.phonebook.domain;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,13 +14,18 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
+/**
+ * Contact class represents contact entity.
+ *
+ * @author Vasyl Utrysko
+ * @version 1.0
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Contact {
+public class Contact{
 
     @Id
     @GeneratedValue
@@ -30,4 +36,6 @@ public class Contact {
     @ElementCollection
     private List<@Pattern(regexp = "^\\+\\d{1,3}\\d{9}$") String> phones;
     private Integer userId;
+    @Nullable
+    private String photo;
 }

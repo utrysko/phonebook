@@ -10,6 +10,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * Class represents an authentication service.
+ *
+ * @author Vasyl Utrysko
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -21,6 +27,12 @@ public class AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
 
+    /**
+     * Method try to register a new user
+     *
+     * @param request RegisterRequest with all needed fields
+     * @return AuthenticationResponse with token
+     */
     public AuthenticationResponse register(RegisterRequest request) {
         User user = User.builder()
                 .firstname(request.getFirstname())
@@ -36,6 +48,12 @@ public class AuthenticationService {
                 .build();
     }
 
+    /**
+     * Method try to authenticate a user
+     *
+     * @param request RegisterRequest with all needed fields
+     * @return AuthenticationResponse with token
+     */
     public AuthenticationResponse authenticate(HttpSession session, AuthenticationRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.getEmail(),

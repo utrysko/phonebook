@@ -5,6 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Class represents a request with fields to register a user.
+ *
+ * @author Vasyl Utrysko
+ * @version 1.0
+ */
 @Data
 @Builder
 @AllArgsConstructor

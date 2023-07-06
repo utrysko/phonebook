@@ -14,6 +14,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * Class represents configuration that need to set up security.
+ *
+ * @author Vasyl Utrysko
+ * @version 1.0
+ */
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {

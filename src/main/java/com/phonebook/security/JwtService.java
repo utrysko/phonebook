@@ -14,6 +14,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Class represents a jwt service.
+ *
+ * @author Vasyl Utrysko
+ * @version 1.0
+ */
 @Service
 public class JwtService {
 

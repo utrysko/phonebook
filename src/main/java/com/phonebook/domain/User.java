@@ -13,6 +13,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * User class represents user entity.
+ *
+ * @author Vasyl Utrysko
+ * @version 1.0
+ */
 @Data
 @Builder
 @NoArgsConstructor
