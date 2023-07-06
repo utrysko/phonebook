@@ -2,7 +2,7 @@ package com.phonebook.controller;
 
 import com.phonebook.domain.Contact;
 import com.phonebook.dto.ContactDTO;
-import com.phonebook.service.impl.ContactServiceImpl;
+import com.phonebook.service.ContactService;
 import com.phonebook.util.FileUploadUtil;
 import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
@@ -30,7 +30,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ContactController extends BaseController{
 
-    private final ContactServiceImpl contactService;
+    private final ContactService contactService;
 
     /**
      * A method to retrieve user contacts
